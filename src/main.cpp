@@ -2,10 +2,8 @@
 #include "interpreter.h"
 
 int main(int argc, char* argv[]) {
-    aleversion = "v1.2";
-
     if (argc < 2) {
-        std::cerr << "Alescript " << aleversion << "\nUsage: interpreter <program_file>\n";
+        std::cerr << "Alescript v1.2\nUsage: interpreter <program_file>\n";
         return 1;
     }
 
