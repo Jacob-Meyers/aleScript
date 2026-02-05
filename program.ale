@@ -1,11 +1,8 @@
 var?x?"0
-
 @REP_IGNORE
-
 bmath?x?"+?"1
 var?x
 println?LAST_RETURNED
-
 if?x?"<?"10000?"1?"
 @REP
 

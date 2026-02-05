@@ -7,6 +7,8 @@
 #include <functional> 
 #include <iostream>
 
+string aleversion;
+
 using namespace std;
 
 class Interpreter {
