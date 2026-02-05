@@ -1,3 +1,5 @@
+println?"Runs on build!
+
 var?x?"0
 @REP_IGNORE
 bmath?x?"+?"1

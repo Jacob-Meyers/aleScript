@@ -83,7 +83,7 @@ void Interpreter::executeVar(const vector<string>& csline) {
 
 // bmath?<num1>?<operator>?<num2>
 void Interpreter::executeBMath(const vector<string>& csline) {
-    if (csline.size() >= 4) {
+    if (csline.size() > 3) {
         float in1 = strtof(getValue(csline[1]).c_str(), nullptr);
         string sign = getValue(csline[2]);
         float in2 = strtof(getValue(csline[3]).c_str(), nullptr);
@@ -101,7 +101,7 @@ void Interpreter::executeBMath(const vector<string>& csline) {
         else oss << "INVALID_OPERATOR";
         lastReturned = oss.str();
     } else {
-        cerr << "Line " << pc << " ; Invalid 'bmath' format." << endl;
+        cerr << "Line " << pc << " ; Invalid 'bmath' format. Expected: bmath?<num1>?<operator>?<num2> (received " << csline.size() << " tokens)" << endl;
         lastReturned = "BMATH_ERROR";
     }
 }
@@ -193,7 +193,7 @@ void Interpreter::executeIfStatement(const vector<string>& csline) {
     string in2 = getValue(csline[3]);
     string opr = getValue(csline[2]);
     int linesTM = stoi(getValue(csline[4]));
-    string until = getValue(csline[5]);
+    string until = (csline.size() == 5) ? "" : getValue(csline[5]);
     bool out = false;
 
     if (opr == "==") out = (in1 == in2);
@@ -204,7 +204,7 @@ void Interpreter::executeIfStatement(const vector<string>& csline) {
     else if (opr == "<=") out = (stof(in1) <= stof(in2));
     else cerr << "Line " << pc << " ; Invalid \'if\' operator." << endl;
     if (!out) {
-        pcLookingFor = "-<" + until;
+        if (!until.empty()) pcLookingFor = "-<" + until;
         pc += linesTM;
     }
 
