@@ -7,9 +7,9 @@
 #include <functional> 
 #include <iostream>
 
-string aleversion;
-
 using namespace std;
+
+string aleversion;
 
 class Interpreter {
 public:
