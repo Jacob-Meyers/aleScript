@@ -1,6 +1,8 @@
 @SET_SPLAR?"`
 
 println`"Calculator Made with AleScript
+join`"Available operators: `HELP_BMATH_OPERATORS
+println`LAST_RETURNED
 
 @REP_IGNORE
 
