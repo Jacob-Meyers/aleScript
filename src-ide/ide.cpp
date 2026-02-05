@@ -11,7 +11,7 @@
 
 using namespace std;
 
-const char* ide_version = "v1.1.0";
+const char* ide_version = "v1.2";
 
 // Remove surrounding quotes
 string trim_quotes(const string &s) {
@@ -23,7 +23,6 @@ string trim_quotes(const string &s) {
 // List of words for autocomplete
 vector<string> autocomplete_words = {
     "EMPTY",
-    "ALE_VERSION",
     "ARG_PATH",
     "HELP_BMATH_OPERATORS",
     "HELP_IF_OPRS",
