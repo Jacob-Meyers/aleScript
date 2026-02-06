@@ -1,14 +1,6 @@
 #include "interpreter.h"
-#include "grains.h"
-#include <cstdlib>
-#include <iostream>
-#include <fstream>
-#include <chrono>
-#include <string>
-#include <sstream>
-#include <cmath>
 
-using namespace std;
+string pcLookingFor;
 
 // Command dispatcher table
 static const unordered_map<string, function<void(Interpreter*, const vector<string>&)>> commandDispatcher = {
@@ -16,6 +8,8 @@ static const unordered_map<string, function<void(Interpreter*, const vector<stri
     {"println", [](Interpreter* self, const vector<string>& args) { self->executePrintln(args); }},
     {"var", [](Interpreter* self, const vector<string>& args) { self->executeVar(args); }},
     {"bmath", [](Interpreter* self, const vector<string>& args) { self->executeBMath(args); }},
+    {"strtoint", [](Interpreter* self, const vector<string>& args) { self->executeStringToInt(args); }},
+    {"strtofloat", [](Interpreter* self, const vector<string>& args) { self->executeStringToFloat(args); }},
     {"input", [](Interpreter* self, const vector<string>& args) { self->executeInput(args); }},
     {"@REP_IGNORE", [](Interpreter* self, const vector<string>& args) { self->executeRep(false); }},
     {"@REP", [](Interpreter* self, const vector<string>& args) { self->executeRep(true); }},
@@ -93,6 +87,7 @@ void Interpreter::executeBMath(const vector<string>& csline) {
         else if (sign == "-") out = in1 - in2;
         else if (sign == "*") out = in1 * in2;
         else if (sign == "/") out = in1 / in2;
+        else if (sign == "%") out = int(in1) % int(in2);
         else if (sign == "root") out = pow(in1, 1.0 / in2);
         else if (sign == "powr") out = pow(in1, in2);
 
@@ -104,6 +99,13 @@ void Interpreter::executeBMath(const vector<string>& csline) {
         cerr << "Line " << pc << " ; Invalid 'bmath' format. Expected: bmath?<num1>?<operator>?<num2> (received " << csline.size() << " tokens)" << endl;
         lastReturned = "BMATH_ERROR";
     }
+}
+void Interpreter::executeStringToInt(const vector<string>& csline) { lastReturned = to_string(stoi(getValue(csline[1]))); }
+void Interpreter::executeStringToFloat(const vector<string>& csline) { 
+    float val = strtof(getValue(csline[1]).c_str(), nullptr);
+    ostringstream oss;
+    oss << val;
+    lastReturned = oss.str();
 }
 
 // input?<texttoput>

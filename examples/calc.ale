@@ -8,10 +8,12 @@ println`"
 
     // Handle Inputs
 input`"Number 1: `
+strtofloat`LAST_RETURNED
 var`num1
 input`"Operator: `
 var`sign
 input`"Number 2: `
+strtofloat`LAST_RETURNED
 var`num2
 
     // Handle Operation

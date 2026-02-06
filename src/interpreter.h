@@ -6,8 +6,15 @@
 #include <unordered_map>
 #include <functional> 
 #include <iostream>
+#include <cstdlib>
+#include <fstream>
+#include <sstream>
+#include <cmath>
+#include <cctype>
 
 using namespace std;
+
+extern string ale_version;
 
 class Interpreter {
 public:
@@ -21,6 +28,8 @@ public:
     void executePrintln(const vector<string>& csline);
     void executeVar(const vector<string>& csline);
     void executeBMath(const vector<string>& csline);
+    void executeStringToInt(const vector<string>& csline);
+    void executeStringToFloat(const vector<string>& csline);
     void executeInput(const vector<string>& csline);
     void executeRep(bool type);
     void executeFWrite(const vector<string>& csline);

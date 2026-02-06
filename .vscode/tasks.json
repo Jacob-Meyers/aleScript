@@ -18,7 +18,7 @@
       "command": "sh",
       "args": ["-c", "./Build.sh"],
       "windows": {
-        "command": "Build.bat",
+        "command": "Build-OnWindows.py",
         "options": {
           "cwd": "${workspaceFolder}",
           "shell": {

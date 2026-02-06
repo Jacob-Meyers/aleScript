@@ -1,11 +1,4 @@
 #include "interpreter.h"
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <cctype>
-
-
-using namespace std;
 
 
 string getDirectory(const string& path) {
@@ -17,9 +10,10 @@ Interpreter::Interpreter(const string& programPath)
     : lastReturned("NULL"), SPLAR('?'), pc(0)
 {
     variables["EMPTY"] = "";
+    variables["ALE_VERSION"] = "0";
     variables["PC_IGNORE"] = "0";
     variables["ARG_PATH"] = getDirectory(programPath);
-    variables["HELP_BMATH_OPERATORS"] = "+, -, *, /, root, powr";
+    variables["HELP_BMATH_OPERATORS"] = "+, -, *, /, %, root, powr";
     variables["HELP_IF_OPRS"] = "==, !=, >, <, >=, <=";
 }
 

@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if (WIN32)
     set(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc -static-libstdc++")
+    set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} -s")
 endif()
 
 file(GLOB_RECURSE SOURCE_FILES "src/*.cpp" "src/*.h")
@@ -12,6 +13,8 @@ file(GLOB_RECURSE SOURCEIDE_FILES "src-ide/*.cpp" "src-ide/*.h")
 
 # Main program (always built)
 add_executable(alescript ${SOURCE_FILES})
+
+
 
 # IDE program (Linux/macOS only)
 if (NOT WIN32)
