@@ -1,12 +1,18 @@
-println?"Runs on build!
+var?runFunc?"false
 
+var?funcLN?THIS_LINE
+if?runFunc?"!=?"false?"0?"skipTo
 
-var?x?"0
+println?"function
+
+var?runFunc?"false
+return?"empty
+-<skipTo
+
 @REP_IGNORE
-bmath?x?"+?"1
-var?x
-println?LAST_RETURNED
-if?x?"<?"10000?"1?"
+input?"~> ?
+if?LAST_RETURNED?"==?"a?"0?"skipTo
+var?runFunc?"true
+setln?funcLN
+-<skipTo
 @REP
-
-

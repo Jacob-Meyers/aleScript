@@ -22,11 +22,14 @@ static const unordered_map<string, function<void(Interpreter*, const vector<stri
     {"webget", [](Interpreter* self, const vector<string>& args) { self->executeWebGet(args); }},
     {"getFps", [](Interpreter* self, const vector<string>& args) { self->executeGetFPS(); }},
     {"jump", [](Interpreter* self, const vector<string>& args) { self->executeJumpLines(args); }},
+    {"setln", [](Interpreter* self, const vector<string>& args) { self->executeSetLines(args); }},
+    {"return", [](Interpreter* self, const vector<string>& args) { self->executeReturn(args); }},
     {"exit", [](Interpreter* self, const vector<string>& args) { exit(0); }},
 };
 
 void Interpreter::executeLine(const string& line) {
     variables["LAST_RETURNED"] = lastReturned;
+    variables["THIS_LINE"] = to_string(pc);
 
 
     if (!pcLookingFor.empty()) { if (pcLookingFor!=line) return; } { if (pcLookingFor==line) pcLookingFor=""; }
@@ -256,6 +259,6 @@ void Interpreter::executeGetFPS() {
     lastReturned = to_string(lastFPS);
 }
 
-void Interpreter::executeJumpLines(const vector<string>& csline) {
-    pc += stoi(getValue(csline[0]));
-}
+void Interpreter::executeJumpLines(const vector<string>& csline) { pc += stoi(getValue(csline[1])); }
+void Interpreter::executeSetLines(const vector<string>& csline) { variables["RETURN_LINE"] = to_string(pc); pc = stoi(getValue(csline[1])); }
+void Interpreter::executeReturn(const vector<string>& csline) { variables["LAST_RETURNED"] = getValue(csline[1]); pc = stoi(variables["RETURN_LINE"]); }

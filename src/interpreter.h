@@ -42,6 +42,8 @@ public:
     void executeSystemsil(const vector<string>& csline);
     void executeGetFPS();
     void executeJumpLines(const vector<string>& csline);
+    void executeSetLines(const vector<string>& csline);
+    void executeReturn(const vector<string>& csline);
 
     string getValue(const string& s) const {
         if (!s.empty() && s.front() == '"') {
