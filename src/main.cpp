@@ -5,7 +5,6 @@ int main(int argc, char* argv[]) {
 
     if (argc < 2) {
         std::cerr << "Alescript " << ale_version << "\nUsage: interpreter <program_file>\n";
-        std::cin;
         return 1;
     }
 
